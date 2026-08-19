@@ -46,12 +46,43 @@
   .hov-deep:hover { color:#264C39 !important; border-color:#264C39 !important }
   .hov-green:hover { color:#2F5D46 !important; border-color:#2F5D46 !important }
   .hov-ink-b:hover { color:#23241F !important; border-color:#23241F !important }
+  .founder-record { margin-top:clamp(44px,7vh,76px); max-width:1080px; background:#E7E3D9; border:1px solid #C4BFB1; box-shadow:0 1px 0 #FFF inset, 0 18px 50px rgba(35,36,31,.06); position:relative; overflow:hidden; }
+  .founder-record::before { content:""; position:absolute; inset:9px; border:1px solid rgba(196,191,177,.72); pointer-events:none; }
+  .founder-record__header { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:17px clamp(20px,3vw,34px); border-bottom:1px solid #C4BFB1; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.22em; color:#6F6C63; }
+  .founder-record__grid { display:grid; grid-template-columns:minmax(150px,190px) minmax(0,1fr); gap:clamp(30px,4.5vw,58px); padding:clamp(28px,4.6vw,54px); }
+  .founder-record__portrait { width:min(100%,176px); margin:8px auto 0; position:relative; align-self:start; justify-self:center; }
+  .founder-record__portrait-frame { padding:7px; aspect-ratio:1; background:#EFEDE8; border:1px solid #B8B2A2; border-radius:50%; box-shadow:0 8px 24px rgba(35,36,31,.10),0 0 0 4px rgba(239,237,232,.72); overflow:hidden; }
+  .founder-record__portrait img { display:block; width:100%; height:100%; aspect-ratio:1; border-radius:50%; object-fit:cover; object-position:center 31%; filter:saturate(.84) contrast(1.02); }
+  .founder-record__portrait figcaption { display:flex; justify-content:center; flex-wrap:wrap; gap:5px 12px; margin-top:15px; text-align:center; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:8px; letter-spacing:.16em; color:#6F6C63; }
+  .founder-record__stamp { position:absolute; right:clamp(18px,3vw,34px); top:62px; border:2px solid #2F5D46; color:#2F5D46; padding:8px 11px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:9px; letter-spacing:.16em; line-height:1.55; text-align:center; transform:rotate(4deg); opacity:.72; }
+  .founder-record__eyebrow { margin:0 0 13px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.25em; color:#2F5D46; }
+  .founder-record__name { margin:0; font-family:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif; font-weight:400; font-size:clamp(34px,4.2vw,52px); line-height:1; letter-spacing:-.03em; }
+  .founder-record__role { margin:12px 0 0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:clamp(17px,1.7vw,21px); color:#2F5D46; }
+  .founder-record__bio { margin:25px 0 0; max-width:590px; font-size:17px; line-height:1.7; color:#3B3C36; text-wrap:pretty; }
+  .founder-record__facts { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.5fr) minmax(0,1.05fr); margin:30px 0 0; border-top:1px solid #C4BFB1; border-bottom:1px solid #C4BFB1; }
+  .founder-record__fact { padding:15px 15px 15px 0; }
+  .founder-record__fact + .founder-record__fact { padding-left:15px; border-left:1px solid #C4BFB1; }
+  .founder-record__fact dt { margin:0 0 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:9px; letter-spacing:.18em; color:#8A867B; }
+  .founder-record__fact dd { margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:15px; line-height:1.4; color:#3B3C36; }
+  .founder-record__links { display:flex; flex-wrap:wrap; gap:10px; margin-top:27px; }
+  .founder-record__link { display:inline-flex; align-items:center; gap:9px; padding:10px 13px; border:1px solid #B8B2A2; color:#3B3C36; background:rgba(239,237,232,.56); font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.12em; transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease; }
+  .founder-record__link:hover { background:#EFEDE8; border-color:#2F5D46; color:#2F5D46; transform:translateY(-2px); }
+  .founder-record__link svg { width:15px; height:15px; flex:0 0 auto; }
+  .founder-record__orcid { width:15px; height:15px; display:inline-grid; place-items:center; border:1px solid currentColor; border-radius:50%; font-family:Arial,sans-serif; font-size:7px; font-weight:700; letter-spacing:-.04em; }
   /* mobile: stop desktop-first minmax() tracks from starving the content column */
   @media (max-width:640px) {
     [style*="minmax(180px,340px)"] { grid-template-columns:1fr !important; }
     [style*="minmax(280px,520px)"] { grid-template-columns:1fr !important; }
     [style*="minmax(140px,230px)"] { grid-template-columns:minmax(90px,1fr) minmax(64px,1.4fr) auto !important; }
     [style*="minmax(104px,160px)"] { grid-template-columns:96px minmax(0,1fr) !important; }
+    .founder-record__header { align-items:flex-start; flex-direction:column; }
+    .founder-record__grid { grid-template-columns:1fr; }
+    .founder-record__portrait { width:148px; margin-top:0; }
+    .founder-record__stamp { top:104px; font-size:8px; }
+    .founder-record__facts { grid-template-columns:1fr; }
+    .founder-record__fact { padding:13px 0; }
+    .founder-record__fact + .founder-record__fact { padding-left:0; border-left:0; border-top:1px solid #C4BFB1; }
+    .founder-record__links { display:grid; grid-template-columns:1fr 1fr; }
   }
 </style>
 
@@ -75,6 +106,7 @@
       <a href="#exhibit-02" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">EVIDENCE</a>
       <a href="#exhibit-03" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">APPROACH</a>
       <a href="#exhibit-04" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">PROGRESS</a>
+      <a href="#founder" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">FOUNDER</a>
       <a href="#contact" style="color:#2F5D46; white-space:nowrap; border-bottom:1px solid #2F5D46; padding-bottom:2px;" class="hov-deep">CONTACT</a>
     </nav>
   </header>
@@ -83,7 +115,7 @@
     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:24px; margin-bottom:clamp(36px,7vh,80px);">
       <p style="font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.26em; color:#6F6C63; margin:0; animation:settle .8s ease both;">AI RESEARCH LABORATORY<br><span style="color:#A8A499;">EST. 2026 · FIRST PAPER EXPECTED 2026</span></p>
       <div style="border:2px solid #2F5D46; color:#2F5D46; padding:10px 14px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.2em; line-height:1.7; transform:rotate(-4deg); animation:stampIn .5s cubic-bezier(.2,.9,.3,1.4) .9s both; opacity:.9;">
-        ACC. NO. 2026-001<br>EUMNESIA LABS<br>PERMANENT COLLECTION
+        RESEARCH RECORD · 2026-001<br>EUMNESIA LABS<br>ACTIVE RESEARCH ARCHIVE
       </div>
     </div>
 
@@ -393,11 +425,49 @@
     <p style="font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.26em; color:#6F6C63; margin:0 0 26px;">CORRESPONDENCE</p>
     <a href="mailto:anuj@eumnesia.com" style="display:inline-block; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(28px,5.6vw,72px); line-height:1.08; letter-spacing:-.03em; color:#23241F; border-bottom:1px solid #C4BFB1; padding-bottom:6px; word-break:break-word;" class="hov-green">anuj@eumnesia.com</a>
     <p style="margin:24px 0 0;"><a href="mailto:anuj@eumnesia.com?subject=Notify%20me%20%E2%80%94%20Eumnesia%20paper" style="font-size:16px; color:#2F5D46; border-bottom:1px solid #2F5D46; padding-bottom:3px;">Get notified when we publish ↗</a></p>
-    <div style="margin:38px 0 0; padding-top:24px; border-top:1px solid #D6D1C4; max-width:620px;">
-      <p style="font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.26em; color:#6F6C63; margin:0 0 12px;">FOUNDER</p>
-      <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:22px;">Anuj Dev Singh</p>
-      <p style="margin:8px 0 12px; font-size:15px; line-height:1.6; color:#6F6C63; text-wrap:pretty;">AI engineer and researcher — data science, IIT Madras. Works on attention, memory, and long-context recall. Based in Delhi, India.</p>
-      <p style="margin:0; font-size:14px; display:flex; flex-wrap:wrap; gap:6px 22px;"><a class="hov-deep" href="https://github.com/anujdevsingh" style="color:#2F5D46; border-bottom:1px solid #2F5D46; padding-bottom:2px; white-space:nowrap;">GitHub ↗</a><a class="hov-deep" href="https://github.com/eumnesia-labs" style="color:#2F5D46; border-bottom:1px solid #2F5D46; padding-bottom:2px; white-space:nowrap;">Eumnesia Labs on GitHub ↗</a><a class="hov-deep" href="https://www.codewithanuj.com/" style="color:#2F5D46; border-bottom:1px solid #2F5D46; padding-bottom:2px; white-space:nowrap;">codewithanuj.com ↗</a></p>
+    <div id="founder" class="founder-record">
+      <div class="founder-record__header">
+        <span>ARCHIVE RECORD · F.001</span>
+        <span>PERSONNEL FILE · EST. 2026</span>
+      </div>
+      <div class="founder-record__stamp" aria-hidden="true">EUMNESIA LABS<br>VERIFIED FOUNDER</div>
+      <div class="founder-record__grid">
+        <figure class="founder-record__portrait">
+          <div class="founder-record__portrait-frame">
+            <img src="anuj-founder.webp" alt="Portrait of Anuj Dev Singh, founder of Eumnesia Labs" loading="lazy" decoding="async" width="900" height="922">
+          </div>
+          <figcaption><span>PLATE F.001</span><span>DELHI · 2026</span></figcaption>
+        </figure>
+        <div>
+          <p class="founder-record__eyebrow">FOUNDER &amp; RESEARCH LEAD</p>
+          <h2 class="founder-record__name">Anuj Dev Singh</h2>
+          <p class="founder-record__role">Building systems that remember exactly.</p>
+          <p class="founder-record__bio">AI engineer and independent researcher working on attention, exact memory, learned selection, and long-context recall. Founder of Eumnesia Labs, based in Delhi, India.</p>
+          <dl class="founder-record__facts">
+            <div class="founder-record__fact"><dt>RESEARCH</dt><dd>Attention · Memory<br>Efficient architectures</dd></div>
+            <div class="founder-record__fact"><dt>EDUCATION</dt><dd>B.S. · Data Science &amp; Applications<br>IIT Madras · 2026<br><br>Bachelor’s · Mathematics<br>University of Delhi · 2021</dd></div>
+            <div class="founder-record__fact"><dt>IDENTIFIER</dt><dd>ORCID<br>0009-0002-4374-3990</dd></div>
+          </dl>
+          <nav class="founder-record__links" aria-label="Anuj Dev Singh profiles">
+            <a class="founder-record__link" href="https://github.com/anujdevsingh" target="_blank" rel="me noopener noreferrer" aria-label="Anuj Dev Singh on GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4.5 1.4-4.5-2.5-6-3m12 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.7-1.4 5.7-6.2 0-1.4-.5-2.5-1.3-3.4.1-.3.6-1.6-.1-3.3 0 0-1.1-.3-3.5 1.3a12 12 0 0 0-6.3 0C6.6 3.3 5.5 3.6 5.5 3.6c-.7 1.7-.2 3-.1 3.3-.8.9-1.3 2-1.3 3.4 0 4.8 2.9 5.9 5.7 6.2-.5.5-.6 1-.6 2V22"/></svg>
+              <span>GITHUB</span>
+            </a>
+            <a class="founder-record__link" href="https://www.linkedin.com/in/anujdevsingh/" target="_blank" rel="me noopener noreferrer" aria-label="Anuj Dev Singh on LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a3 3 0 0 1 6 0v4M11 10v7"/></svg>
+              <span>LINKEDIN</span>
+            </a>
+            <a class="founder-record__link" href="https://orcid.org/0009-0002-4374-3990" target="_blank" rel="me noopener noreferrer" aria-label="Anuj Dev Singh ORCID profile">
+              <span class="founder-record__orcid" aria-hidden="true">iD</span>
+              <span>ORCID</span>
+            </a>
+            <a class="founder-record__link" href="https://www.codewithanuj.com/" target="_blank" rel="me noopener noreferrer" aria-label="Anuj Dev Singh portfolio">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+              <span>PORTFOLIO</span>
+            </a>
+          </nav>
+        </div>
+      </div>
     </div>
     <p style="margin:26px 0 0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#6F6C63;">Eumnesia Labs · founded 2026</p>
   </section>
@@ -411,6 +481,7 @@
       <a href="#exhibit-04" style="color:#6F6C63; white-space:nowrap;">PROGRESS</a>
       <a href="#field-notes" style="color:#6F6C63; white-space:nowrap;">FIELD NOTES</a>
       <a href="#faq" style="color:#6F6C63; white-space:nowrap;">QUESTIONS</a>
+      <a href="#founder" style="color:#6F6C63; white-space:nowrap;">FOUNDER</a>
       <a href="https://github.com/eumnesia-labs" style="color:#6F6C63; white-space:nowrap;">GITHUB ↗</a>
       <a href="#contact" style="color:#2F5D46; white-space:nowrap;">CONTACT</a>
     </nav>
