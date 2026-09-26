@@ -30,6 +30,9 @@
   a { color:#2F5D46; text-decoration:none; }
   a:hover { color:#264C39; }
   :focus-visible { outline:2px solid #2F5D46; outline-offset:3px; }
+  .skip-link { position:absolute; top:-100px; left:20px; z-index:101; padding:12px 16px; background:#23241F; color:#EFEDE8; font:600 14px/1.4 ui-sans-serif,system-ui,sans-serif; }
+  .skip-link:focus { top:8px; color:#EFEDE8; outline-color:#EFEDE8; }
+  .mobile-nav { display:none; }
   @keyframes riseIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
   @keyframes settle { from { opacity:0; } to { opacity:1; } }
   @keyframes stampIn { from { opacity:0; transform:rotate(-4deg) scale(1.25); } to { opacity:1; transform:rotate(-4deg) scale(1); } }
@@ -48,12 +51,12 @@
   .hov-ink-b:hover { color:#23241F !important; border-color:#23241F !important }
   .founder-record { margin-top:clamp(44px,7vh,76px); max-width:1080px; background:#E7E3D9; border:1px solid #C4BFB1; box-shadow:0 1px 0 #FFF inset, 0 18px 50px rgba(35,36,31,.06); position:relative; overflow:hidden; }
   .founder-record::before { content:""; position:absolute; inset:9px; border:1px solid rgba(196,191,177,.72); pointer-events:none; }
-  .founder-record__header { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:17px clamp(20px,3vw,34px); border-bottom:1px solid #C4BFB1; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.22em; color:#6F6C63; }
+  .founder-record__header { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:17px clamp(20px,3vw,34px); border-bottom:1px solid #C4BFB1; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.22em; color:#59564F; }
   .founder-record__grid { display:grid; grid-template-columns:minmax(150px,190px) minmax(0,1fr); gap:clamp(30px,4.5vw,58px); padding:clamp(28px,4.6vw,54px); }
   .founder-record__portrait { width:min(100%,176px); margin:8px auto 0; position:relative; align-self:start; justify-self:center; }
   .founder-record__portrait-frame { padding:7px; aspect-ratio:1; background:#EFEDE8; border:1px solid #B8B2A2; border-radius:50%; box-shadow:0 8px 24px rgba(35,36,31,.10),0 0 0 4px rgba(239,237,232,.72); overflow:hidden; }
   .founder-record__portrait img { display:block; width:100%; height:100%; aspect-ratio:1; border-radius:50%; object-fit:cover; object-position:center 31%; filter:saturate(.84) contrast(1.02); }
-  .founder-record__portrait figcaption { display:flex; justify-content:center; flex-wrap:wrap; gap:5px 12px; margin-top:15px; text-align:center; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:8px; letter-spacing:.16em; color:#6F6C63; }
+  .founder-record__portrait figcaption { display:flex; justify-content:center; flex-wrap:wrap; gap:5px 12px; margin-top:15px; text-align:center; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.16em; color:#59564F; }
   .founder-record__stamp { position:absolute; right:clamp(18px,3vw,34px); top:62px; border:2px solid #2F5D46; color:#2F5D46; padding:8px 11px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:9px; letter-spacing:.16em; line-height:1.55; text-align:center; transform:rotate(4deg); opacity:.72; }
   .founder-record__eyebrow { margin:0 0 13px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.25em; color:#2F5D46; }
   .founder-record__name { margin:0; font-family:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif; font-weight:400; font-size:clamp(34px,4.2vw,52px); line-height:1; letter-spacing:-.03em; }
@@ -62,23 +65,34 @@
   .founder-record__facts { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.5fr) minmax(0,1.05fr); margin:30px 0 0; border-top:1px solid #C4BFB1; border-bottom:1px solid #C4BFB1; }
   .founder-record__fact { padding:15px 15px 15px 0; }
   .founder-record__fact + .founder-record__fact { padding-left:15px; border-left:1px solid #C4BFB1; }
-  .founder-record__fact dt { margin:0 0 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:9px; letter-spacing:.18em; color:#8A867B; }
+  .founder-record__fact dt { margin:0 0 7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:9px; letter-spacing:.18em; color:#59564F; }
   .founder-record__fact dd { margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:15px; line-height:1.4; color:#3B3C36; }
   .founder-record__links { display:flex; flex-wrap:wrap; gap:10px; margin-top:27px; }
   .founder-record__link { display:inline-flex; align-items:center; gap:9px; padding:10px 13px; border:1px solid #B8B2A2; color:#3B3C36; background:rgba(239,237,232,.56); font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.12em; transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease; }
   .founder-record__link:hover { background:#EFEDE8; border-color:#2F5D46; color:#2F5D46; transform:translateY(-2px); }
   .founder-record__link svg { width:15px; height:15px; flex:0 0 auto; }
   .founder-record__orcid { width:15px; height:15px; display:inline-grid; place-items:center; border:1px solid currentColor; border-radius:50%; font-family:Arial,sans-serif; font-size:7px; font-weight:700; letter-spacing:-.04em; }
-  /* mobile: stop desktop-first minmax() tracks from starving the content column */
+  @media (max-width:900px) {
+    .site-header { position:relative; z-index:10; align-items:center !important; }
+    .desktop-nav { display:none !important; }
+    .mobile-nav { display:block; flex:0 0 auto; }
+    .mobile-nav summary { cursor:pointer; padding:9px 0 9px 12px; color:#2F5D46; font:600 11px/1.4 ui-monospace,Menlo,Consolas,monospace; letter-spacing:.16em; }
+    .mobile-nav nav { box-sizing:border-box; position:absolute; top:calc(100% + 1px); right:clamp(20px,5vw,88px); width:min(260px,calc(100vw - 40px)); display:grid; gap:0; padding:8px 16px; background:#EFEDE8; border:1px solid #C4BFB1; box-shadow:0 16px 30px rgba(35,36,31,.12); }
+    .mobile-nav nav a { padding:10px 4px; border-bottom:1px solid #D6D1C4; color:#23241F; font:600 11px/1.4 ui-monospace,Menlo,Consolas,monospace; letter-spacing:.14em; }
+    .mobile-nav nav a:last-child { border-bottom:0; }
+    .founder-record__grid { grid-template-columns:1fr; }
+    .founder-record__portrait { width:148px; margin-top:0; }
+  }
+  /* Keep content tracks within the available width on narrow screens. */
   @media (max-width:640px) {
     [style*="minmax(180px,340px)"] { grid-template-columns:1fr !important; }
     [style*="minmax(280px,520px)"] { grid-template-columns:1fr !important; }
     [style*="minmax(140px,230px)"] { grid-template-columns:minmax(90px,1fr) minmax(64px,1.4fr) auto !important; }
     [style*="minmax(104px,160px)"] { grid-template-columns:96px minmax(0,1fr) !important; }
+    [style*="repeat(auto-fit,minmax(290px,1fr))"],
+    [style*="repeat(auto-fit,minmax(300px,1fr))"] { grid-template-columns:1fr !important; }
     .founder-record__header { align-items:flex-start; flex-direction:column; }
-    .founder-record__grid { grid-template-columns:1fr; }
-    .founder-record__portrait { width:148px; margin-top:0; }
-    .founder-record__stamp { top:104px; font-size:8px; }
+    .founder-record__stamp { display:none; }
     .founder-record__facts { grid-template-columns:1fr; }
     .founder-record__fact { padding:13px 0; }
     .founder-record__fact + .founder-record__fact { padding-left:0; border-left:0; border-top:1px solid #C4BFB1; }
@@ -89,10 +103,11 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div style="font-family:ui-sans-serif,system-ui,'Helvetica Neue',Helvetica,Arial,sans-serif; background:#EFEDE8; color:#23241F; min-height:100vh; overflow-x:hidden;">
   <div id="om-progress" aria-hidden="true"></div>
 
-  <header style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; padding:20px clamp(20px,5vw,88px) 18px; border-bottom:1px double #C4BFB1;">
+  <header class="site-header" style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; padding:20px clamp(20px,5vw,88px) 18px; border-bottom:1px double #C4BFB1;">
     <a href="#top" style="display:flex; align-items:center; gap:11px; color:#23241F; white-space:nowrap;">
       <svg width="18" height="20" viewBox="0 0 44 48" aria-hidden="true" style="display:block;">
         <rect x="0" y="0" width="9" height="48" rx="1.5" fill="#23241F"></rect>
@@ -102,19 +117,34 @@
       </svg>
       <span style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace; font-size:11px; letter-spacing:.26em;">EUMNESIA LABS</span>
     </a>
-    <nav style="display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:baseline; gap:8px clamp(14px,2.4vw,34px); font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.18em;">
-      <a href="#exhibit-01" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">PROBLEM</a>
-      <a href="#exhibit-02" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">EVIDENCE</a>
-      <a href="#exhibit-03" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">APPROACH</a>
-      <a href="#exhibit-04" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">PROGRESS</a>
-      <a href="#founder" style="color:#6F6C63; white-space:nowrap;" class="hov-ink">FOUNDER</a>
+    <nav class="desktop-nav" aria-label="Primary" style="display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:baseline; gap:8px clamp(14px,2.4vw,34px); font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.18em;">
+      <a href="#exhibit-01" style="color:#59564F; white-space:nowrap;" class="hov-ink">PROBLEM</a>
+      <a href="#exhibit-02" style="color:#59564F; white-space:nowrap;" class="hov-ink">EVIDENCE</a>
+      <a href="#exhibit-03" style="color:#59564F; white-space:nowrap;" class="hov-ink">APPROACH</a>
+      <a href="#exhibit-04" style="color:#59564F; white-space:nowrap;" class="hov-ink">PROGRESS</a>
+      <a href="#founder" style="color:#59564F; white-space:nowrap;" class="hov-ink">FOUNDER</a>
       <a href="#contact" style="color:#2F5D46; white-space:nowrap; border-bottom:1px solid #2F5D46; padding-bottom:2px;" class="hov-deep">CONTACT</a>
     </nav>
+    <details class="mobile-nav">
+      <summary>SECTIONS</summary>
+      <nav aria-label="Sections">
+        <a href="#exhibit-01">PROBLEM</a>
+        <a href="#why-now">WHY NOW</a>
+        <a href="#exhibit-02">EVIDENCE</a>
+        <a href="#exhibit-03">APPROACH</a>
+        <a href="#exhibit-04">PROGRESS</a>
+        <a href="#field-notes">FIELD NOTES</a>
+        <a href="#faq">QUESTIONS</a>
+        <a href="#founder">FOUNDER</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+    </details>
   </header>
 
+  <main id="main-content" tabindex="-1">
   <section id="top" style="max-width:1440px; margin:0 auto; padding:clamp(40px,7vh,84px) clamp(20px,5vw,88px) clamp(48px,8vh,100px); position:relative;">
     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:24px; margin-bottom:clamp(36px,7vh,80px);">
-      <p style="font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.26em; color:#6F6C63; margin:0; animation:settle .8s ease both;">AI RESEARCH LABORATORY<br><span style="color:#A8A499;">EST. 2026 · FIRST PAPER EXPECTED 2026</span></p>
+      <p style="font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.26em; color:#59564F; margin:0; animation:settle .8s ease both;">AI RESEARCH LABORATORY<br><span style="color:#59564F;">EST. 2026 · FIRST PAPER EXPECTED 2026</span></p>
       <div style="border:2px solid #2F5D46; color:#2F5D46; padding:10px 14px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.2em; line-height:1.7; transform:rotate(-4deg); animation:stampIn .5s cubic-bezier(.2,.9,.3,1.4) .9s both; opacity:.9;">
         RESEARCH RECORD · 2026-001<br>EUMNESIA LABS<br>ACTIVE RESEARCH ARCHIVE
       </div>
@@ -124,20 +154,20 @@
       <span style="display:block; animation:riseIn .9s cubic-bezier(.2,.7,.2,1) both;">The end</span>
       <span style="display:block; padding-left:clamp(24px,8vw,130px); animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .12s both;">of AI</span>
       <span style="display:block; padding-left:clamp(48px,16vw,260px); position:relative; animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .24s both;">
-        <em style="font-style:italic; background:linear-gradient(90deg,#23241F 12%,#8A867B 55%,#CFCABC 88%); -webkit-background-clip:text; background-clip:text; color:transparent;">amnesia.</em>
-        <span style="position:absolute; left:clamp(48px,16vw,260px); bottom:-1.7em; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:clamp(13px,1.3vw,16px); letter-spacing:0; line-height:1.4; color:#6F6C63; transform:rotate(-1.5deg); white-space:nowrap;">the ink fades — <a href="#exhibit-01" style="color:#2F5D46; border-bottom:1px dotted #2F5D46;">see Exhibit I</a></span>
+        <em style="font-style:italic; background:linear-gradient(90deg,#23241F 12%,#6F6C63 55%,#59564F 88%); -webkit-background-clip:text; background-clip:text; color:transparent;">amnesia.</em>
+        <span style="position:absolute; left:clamp(48px,16vw,260px); bottom:-1.7em; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:clamp(13px,1.3vw,16px); letter-spacing:0; line-height:1.4; color:#59564F; transform:rotate(-1.5deg); white-space:nowrap;">the ink fades — <a href="#exhibit-01" style="color:#2F5D46; border-bottom:1px dotted #2F5D46;">see Exhibit I</a></span>
       </span>
     </h1>
 
     <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,520px); gap:clamp(24px,6vw,96px); align-items:end; margin-top:clamp(48px,9vh,96px);">
-      <p style="margin:0; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.22em; line-height:2.1; color:#A8A499;">
-        EU·MNE·SIA — GREEK <span style="color:#6F6C63;">EU</span> (GOOD, HEALTHY)<br>+ <span style="color:#6F6C63;">MNĒSIS</span> (MEMORY).<br><span style="color:#2F5D46;">THE CLINICAL OPPOSITE OF AMNESIA.</span>
+      <p style="margin:0; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.22em; line-height:2.1; color:#59564F;">
+        EU·MNE·SIA — GREEK <span style="color:#59564F;">EU</span> (GOOD, HEALTHY)<br>+ <span style="color:#59564F;">MNĒSIS</span> (MEMORY).<br><span style="color:#2F5D46;">THE CLINICAL OPPOSITE OF AMNESIA.</span>
       </p>
       <div>
         <p style="margin:0 0 26px; font-size:clamp(17px,1.9vw,21px); line-height:1.6; color:#3B3C36; text-wrap:pretty;">AI models forget. We build attention that keeps memory <span style="border-bottom:2px solid #2F5D46;">exact</span> — and reads only what matters — at any context length.</p>
         <div style="display:flex; flex-wrap:wrap; gap:8px 28px;">
           <a href="#exhibit-01" style="font-size:15px; color:#23241F; border-bottom:1px solid #23241F; padding-bottom:3px; white-space:nowrap;" class="hov-green">Enter the exhibit ↓</a>
-          <a href="#exhibit-04" style="font-size:15px; color:#6F6C63; border-bottom:1px solid #C4BFB1; padding-bottom:3px; white-space:nowrap;" class="hov-ink-b">The record ↓</a>
+          <a href="#exhibit-04" style="font-size:15px; color:#59564F; border-bottom:1px solid #C4BFB1; padding-bottom:3px; white-space:nowrap;" class="hov-ink-b">The record ↓</a>
         </div>
       </div>
     </div>
@@ -145,7 +175,7 @@
 
   <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,5vw,88px);"><svg width="100%" height="9" aria-hidden="true" style="display:block; opacity:.85;"><defs><pattern id="meander" width="16" height="9" patternUnits="userSpaceOnUse"><path d="M1 8.5 V1.5 H15 V7.5 H8 V4.5 H4.5" fill="none" stroke="#C4BFB1" stroke-width="1"></path></pattern></defs><rect width="100%" height="9" fill="url(#meander)"></rect></svg></div>
   <section id="exhibit-01" style="position:relative;">
-    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#A8A499;">E.01 · THE RECALL WALL</span>
+    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#59564F;">E.01 · THE RECALL WALL</span>
     <div style="max-width:1440px; margin:0 auto; padding:clamp(56px,9vh,110px) clamp(20px,5vw,88px);">
       <div style="display:flex; align-items:baseline; gap:clamp(16px,3vw,40px); margin-bottom:clamp(28px,4vh,44px);">
         <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(64px,9vw,140px); line-height:.8; color:#DFDBD0; user-select:none;" aria-hidden="true">I</span>
@@ -195,8 +225,8 @@
             <span style="aspect-ratio:1; background:#23241F; opacity:.05;"></span>
             <span style="aspect-ratio:1; background:#23241F; opacity:.02;"></span>
           </div>
-          <figcaption style="display:flex; justify-content:space-between; gap:12px; margin-top:12px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.2em; color:#6F6C63;">
-            <span>PLATE 1 · TOKENS 1–36</span><span style="color:#A8A499;">WHAT SURVIVES COMPRESSION</span>
+          <figcaption style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:12px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.2em; color:#59564F;">
+            <span>PLATE 1 · TOKENS 1–36</span><span style="color:#59564F;">WHAT SURVIVES COMPRESSION</span>
           </figcaption>
         </figure>
       </div>
@@ -205,7 +235,7 @@
 
   <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,5vw,88px);"><svg width="100%" height="9" aria-hidden="true" style="display:block; opacity:.85;"><rect width="100%" height="9" fill="url(#meander)"></rect></svg></div>
   <section id="why-now" style="position:relative;">
-    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#A8A499;">E.02 · WHY NOW</span>
+    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#59564F;">E.02 · WHY NOW</span>
     <div style="max-width:1440px; margin:0 auto; padding:clamp(56px,9vh,110px) clamp(20px,5vw,88px);">
       <div style="display:flex; align-items:baseline; gap:clamp(16px,3vw,40px); margin-bottom:clamp(28px,4vh,44px);">
         <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(64px,9vw,140px); line-height:.8; color:#DFDBD0; user-select:none;" aria-hidden="true">II</span>
@@ -220,19 +250,19 @@
   </section>
   <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,5vw,88px);"><svg width="100%" height="9" aria-hidden="true" style="display:block; opacity:.85;"><rect width="100%" height="9" fill="url(#meander)"></rect></svg></div>
   <section id="exhibit-02" style="background:#E7E3D9; position:relative;">
-    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#A8A499;">E.03 · CONDITION REPORT</span>
+    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#59564F;">E.03 · CONDITION REPORT</span>
     <div style="max-width:1440px; margin:0 auto; padding:clamp(56px,9vh,110px) clamp(20px,5vw,88px);">
       <div style="display:flex; align-items:baseline; gap:clamp(16px,3vw,40px); margin-bottom:14px;">
         <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(64px,9vw,140px); line-height:.8; color:#D9D4C6; user-select:none;" aria-hidden="true">III</span>
         <h2 style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-weight:400; font-size:clamp(30px,4.6vw,58px); line-height:1.03; letter-spacing:-.024em; margin:0; max-width:780px; text-wrap:balance;">The gap is architectural, not incidental.</h2>
       </div>
-      <p style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#6F6C63; margin:0 0 clamp(32px,5vh,52px); padding-left:clamp(0px,7vw,180px);">Condition report — our reproduction of published results. MQAR benchmark, matched capacity.</p>
+      <p style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#59564F; margin:0 0 clamp(32px,5vh,52px); padding-left:clamp(0px,7vw,180px);">Condition report — our reproduction of published results. MQAR benchmark, matched capacity.</p>
 
       <div style="display:grid; gap:0; max-width:980px; margin-left:clamp(0px,7vw,180px); font-variant-numeric:tabular-nums;">
         <div style="display:grid; grid-template-columns:minmax(140px,230px) minmax(0,1fr) auto; gap:clamp(14px,3vw,36px); align-items:center; padding:20px 0; border-top:1px solid #C4BFB1;">
           <div>
             <p style="margin:0; font-size:16px;">Full attention</p>
-            <p style="margin:5px 0 0; font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#6F6C63;">QUADRATIC COST</p>
+            <p style="margin:5px 0 0; font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F;">QUADRATIC COST</p>
           </div>
           <div style="height:9px; background:#DAD5C8;">
             <div style="width:99%; height:100%; background:#2F5D46; animation:grow99 1.5s cubic-bezier(.2,.7,.2,1) .2s both;"></div>
@@ -242,12 +272,12 @@
         <div style="display:grid; grid-template-columns:minmax(140px,230px) minmax(0,1fr) auto; gap:clamp(14px,3vw,36px); align-items:center; padding:20px 0; border-top:1px solid #C4BFB1;">
           <div>
             <p style="margin:0; font-size:16px;">Fixed-state models</p>
-            <p style="margin:5px 0 0; font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#6F6C63;">CHEAP</p>
+            <p style="margin:5px 0 0; font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F;">CHEAP</p>
           </div>
           <div style="height:9px; background:#DAD5C8;">
             <div style="width:10%; height:100%; background:#8A867B; animation:grow10 1.5s cubic-bezier(.2,.7,.2,1) .35s both;"></div>
           </div>
-          <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(24px,3vw,34px); letter-spacing:-.02em; color:#6F6C63;">0.10</p>
+          <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(24px,3vw,34px); letter-spacing:-.02em; color:#59564F;">0.10</p>
         </div>
         <div style="display:grid; grid-template-columns:minmax(140px,230px) minmax(0,1fr) auto; gap:clamp(14px,3vw,36px); align-items:center; padding:20px 0; border-top:1px solid #C4BFB1; border-bottom:1px solid #C4BFB1;">
           <div>
@@ -255,7 +285,7 @@
             <p style="margin:5px 0 0; font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#2F5D46;">IN DEVELOPMENT</p>
           </div>
           <div style="height:9px; border:1px dashed #B8B2A2;"></div>
-          <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#6F6C63;">with the paper</p>
+          <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#59564F;">with the paper</p>
         </div>
       </div>
     </div>
@@ -267,7 +297,7 @@
   </section>
   <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,5vw,88px);"><svg width="100%" height="9" aria-hidden="true" style="display:block; opacity:.85;"><rect width="100%" height="9" fill="url(#meander)"></rect></svg></div>
   <section id="exhibit-03" style="position:relative;">
-    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#A8A499;">E.04 · METHOD</span>
+    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#59564F;">E.04 · METHOD</span>
     <div style="max-width:1440px; margin:0 auto; padding:clamp(56px,9vh,110px) clamp(20px,5vw,88px);">
       <div style="display:flex; align-items:baseline; gap:clamp(16px,3vw,40px); margin-bottom:clamp(36px,5vh,60px);">
         <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(64px,9vw,140px); line-height:.8; color:#DFDBD0; user-select:none;" aria-hidden="true">IV</span>
@@ -296,14 +326,14 @@
             <p style="margin:0; font-size:16px; line-height:1.62; color:#4A4A44; max-width:520px;">Including the selection step itself — where others quietly pay the quadratic price.</p>
           </div>
         </div>
-        <p style="margin:28px 0 0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:17px; color:#6F6C63;">Our first architecture is in active development. Details arrive with the paper.</p>
+        <p style="margin:28px 0 0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:17px; color:#59564F;">Our first architecture is in active development. Details arrive with the paper.</p>
       </div>
     </div>
   </section>
 
   <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,5vw,88px);"><svg width="100%" height="9" aria-hidden="true" style="display:block; opacity:.85;"><rect width="100%" height="9" fill="url(#meander)"></rect></svg></div>
   <section id="exhibit-04" style="background:repeating-linear-gradient(to bottom,#EFEDE8 0 35px,#E4E0D4 35px 36px); position:relative;">
-    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#A8A499;">E.05 · THE RECORD</span>
+    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#59564F;">E.05 · THE RECORD</span>
     <div style="max-width:1440px; margin:0 auto; padding:clamp(56px,9vh,110px) clamp(20px,5vw,88px);">
       <div style="display:flex; align-items:baseline; gap:clamp(16px,3vw,40px); margin-bottom:clamp(32px,5vh,56px);">
         <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(64px,9vw,140px); line-height:.8; color:#DFDBD0; user-select:none;" aria-hidden="true">V</span>
@@ -314,28 +344,28 @@
         <li style="display:grid; grid-template-columns:minmax(104px,160px) minmax(0,1fr); gap:clamp(14px,3vw,44px); padding:20px 0; border-top:1px solid #C9C4B6;">
           <div style="display:grid; gap:5px; align-content:start;">
             <span style="font-family:ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.18em;">JUN 2026</span>
-            <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#6F6C63;">COMPLETE</span>
+            <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F;">COMPLETE</span>
           </div>
           <p style="margin:0; font-size:17px; line-height:1.6; color:#3B3C36; max-width:640px; text-wrap:pretty;">Reproduced the recall wall — attention ~0.99 vs fixed-state ~0.10 at matched capacity. The gap is architectural.</p>
         </li>
         <li style="display:grid; grid-template-columns:minmax(104px,160px) minmax(0,1fr); gap:clamp(14px,3vw,44px); padding:20px 0; border-top:1px solid #C9C4B6;">
           <div style="display:grid; gap:5px; align-content:start;">
             <span style="font-family:ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.18em;">JUN 2026</span>
-            <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#6F6C63;">COMPLETE</span>
+            <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F;">COMPLETE</span>
           </div>
           <p style="margin:0; font-size:17px; line-height:1.6; color:#3B3C36; max-width:640px; text-wrap:pretty;">Verified that content-based sparse attention holds the dense-recall ceiling — its hidden cost is the selection stage itself.</p>
         </li>
         <li style="display:grid; grid-template-columns:minmax(104px,160px) minmax(0,1fr); gap:clamp(14px,3vw,44px); padding:20px 0; border-top:1px solid #C9C4B6;">
           <div style="display:grid; gap:5px; align-content:start;">
             <span style="font-family:ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.18em;">JUL 2026</span>
-            <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#6F6C63;">COMPLETE</span>
+            <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F;">COMPLETE</span>
           </div>
           <p style="margin:0; font-size:17px; line-height:1.6; color:#3B3C36; max-width:640px; text-wrap:pretty;">Built our own architecture and validated it across sequence lengths. Full results with the paper.</p>
         </li>
         <li style="display:grid; grid-template-columns:minmax(104px,160px) minmax(0,1fr); gap:clamp(14px,3vw,44px); padding:20px 0; border-top:1px solid #C9C4B6;">
           <div style="display:grid; gap:5px; align-content:start;">
             <span style="font-family:ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.18em;">JUL 2026</span>
-            <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#6F6C63;">COMPLETE</span>
+            <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F;">COMPLETE</span>
           </div>
           <p style="margin:0; font-size:17px; line-height:1.6; color:#3B3C36; max-width:640px; text-wrap:pretty;">Controlled budget study: the recall loss at length is recoverable, not fundamental. Full results with the paper.</p>
         </li>
@@ -347,16 +377,16 @@
           <p style="margin:0; font-size:17px; line-height:1.6; color:#23241F; max-width:640px; text-wrap:pretty;">Multi-seed confirmation, longer sequences, and head-to-head frontiers against state-of-the-art efficient architectures. Paper expected 2026.</p>
         </li>
         <li style="display:grid; grid-template-columns:minmax(104px,160px) minmax(0,1fr); gap:clamp(14px,3vw,44px); padding:16px 0; border-top:1px dashed #C9C4B6;">
-          <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#A8A499; align-self:start;">NEXT</span>
-          <p style="margin:0; font-size:16px; line-height:1.5; color:#8A867B;">Paper draft</p>
+          <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F; align-self:start;">NEXT</span>
+          <p style="margin:0; font-size:16px; line-height:1.5; color:#59564F;">Paper draft</p>
         </li>
         <li style="display:grid; grid-template-columns:minmax(104px,160px) minmax(0,1fr); gap:clamp(14px,3vw,44px); padding:16px 0; border-top:1px dashed #C9C4B6;">
-          <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#A8A499; align-self:start;">2026</span>
-          <p style="margin:0; font-size:16px; line-height:1.5; color:#8A867B;">First paper</p>
+          <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F; align-self:start;">2026</span>
+          <p style="margin:0; font-size:16px; line-height:1.5; color:#59564F;">First paper</p>
         </li>
         <li style="display:grid; grid-template-columns:minmax(104px,160px) minmax(0,1fr); gap:clamp(14px,3vw,44px); padding:16px 0; border-top:1px dashed #C9C4B6; border-bottom:1px solid #C9C4B6;">
-          <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#A8A499; align-self:start;">WITH THE PAPER</span>
-          <p style="margin:0; font-size:16px; line-height:1.5; color:#8A867B;">Repository opens</p>
+          <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F; align-self:start;">WITH THE PAPER</span>
+          <p style="margin:0; font-size:16px; line-height:1.5; color:#59564F;">Repository opens</p>
         </li>
       </ol>
     </div>
@@ -375,15 +405,15 @@
 
   <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,5vw,88px);"><svg width="100%" height="9" aria-hidden="true" style="display:block; opacity:.85;"><rect width="100%" height="9" fill="url(#meander)"></rect></svg></div>
   <section id="field-notes" style="position:relative;">
-    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#A8A499;">E.06 · FIELD NOTES</span>
+    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#59564F;">E.06 · FIELD NOTES</span>
     <div style="max-width:1440px; margin:0 auto; padding:clamp(56px,9vh,110px) clamp(20px,5vw,88px);">
       <div style="display:flex; align-items:baseline; gap:clamp(16px,3vw,40px); margin-bottom:14px;">
         <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(64px,9vw,140px); line-height:.8; color:#DFDBD0; user-select:none;" aria-hidden="true">VI</span>
         <h2 style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-weight:400; font-size:clamp(30px,4.6vw,58px); line-height:1.03; letter-spacing:-.024em; margin:0; text-wrap:balance;">Field notes.</h2>
       </div>
-      <p style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#6F6C63; margin:0 0 clamp(28px,4vh,44px); padding-left:clamp(0px,7vw,180px);">Writings from the lab — plain words, public knowledge, no hype.</p>
+      <p style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#59564F; margin:0 0 clamp(28px,4vh,44px); padding-left:clamp(0px,7vw,180px);">Writings from the lab — plain words, public knowledge, no hype.</p>
       <article style="margin-left:clamp(0px,7vw,180px); max-width:960px; background:#E7E3D9; border:1px solid #D6D1C4; padding:clamp(24px,3.4vw,44px);">
-        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 16px; padding-bottom:14px; margin-bottom:22px; border-bottom:1px solid #D6D1C4; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.2em; color:#6F6C63;">
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 16px; padding-bottom:14px; margin-bottom:22px; border-bottom:1px solid #D6D1C4; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.2em; color:#59564F;">
           <span>F.01 · ESSAY</span><span>READING TIME · 3 MIN</span>
         </div>
         <h3 style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-weight:400; font-size:clamp(24px,3vw,36px); line-height:1.1; letter-spacing:-.02em; margin:0 0 22px; text-wrap:balance;">Why AI forgets — the recall wall, explained simply</h3>
@@ -398,32 +428,32 @@
   </section>
   <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,5vw,88px);"><svg width="100%" height="9" aria-hidden="true" style="display:block; opacity:.85;"><rect width="100%" height="9" fill="url(#meander)"></rect></svg></div>
   <section id="faq" style="position:relative;">
-    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#A8A499;">APPENDIX A · QUESTIONS</span>
+    <span style="position:absolute; top:clamp(36px,6vh,72px); left:clamp(4px,1.2vw,24px); writing-mode:vertical-rl; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.34em; color:#59564F;">APPENDIX A · QUESTIONS</span>
     <div style="max-width:1440px; margin:0 auto; padding:clamp(48px,7vh,88px) clamp(20px,5vw,88px);">
       <h2 style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-weight:400; font-size:clamp(30px,4.6vw,58px); line-height:1.03; letter-spacing:-.024em; margin:0; text-wrap:balance; font-size:clamp(26px,3.4vw,40px); margin-bottom:clamp(24px,4vh,40px);">Questions, answered plainly.</h2>
       <div style="margin-left:clamp(0px,7vw,180px); max-width:900px;">
         <div style="display:grid; grid-template-columns:minmax(180px,340px) minmax(0,1fr); gap:clamp(14px,3vw,40px); padding:18px 0; border-top:1px solid #D6D1C4;">
           <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:18px;">Is this a product I can use today?</p>
-          <p style="margin:0; font-size:15px; line-height:1.6; color:#6F6C63;">Not yet — we are research-first. The paper and open repository land in 2026; long-memory models and tooling built on the architecture follow. The experiments behind them are compute-intensive: multi-seed training runs and long-sequence evaluations.</p>
+          <p style="margin:0; font-size:15px; line-height:1.6; color:#59564F;">Not yet — we are research-first. The paper and open repository land in 2026; long-memory models and tooling built on the architecture follow. The experiments behind them are compute-intensive: multi-seed training runs and long-sequence evaluations.</p>
         </div>
         <div style="display:grid; grid-template-columns:minmax(180px,340px) minmax(0,1fr); gap:clamp(14px,3vw,40px); padding:18px 0; border-top:1px solid #D6D1C4;">
           <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:18px;">Are you hiring?</p>
-          <p style="margin:0; font-size:15px; line-height:1.6; color:#6F6C63;">Not yet — but write to us.</p>
+          <p style="margin:0; font-size:15px; line-height:1.6; color:#59564F;">Not yet — but write to us.</p>
         </div>
         <div style="display:grid; grid-template-columns:minmax(180px,340px) minmax(0,1fr); gap:clamp(14px,3vw,40px); padding:18px 0; border-top:1px solid #D6D1C4;">
           <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:18px;">Can I follow the research?</p>
-          <p style="margin:0; font-size:15px; line-height:1.6; color:#6F6C63;">The repository opens with the paper. Email us to request a publication update.</p>
+          <p style="margin:0; font-size:15px; line-height:1.6; color:#59564F;">The repository opens with the paper. Email us to request a publication update.</p>
         </div>
         <div style="display:grid; grid-template-columns:minmax(180px,340px) minmax(0,1fr); gap:clamp(14px,3vw,40px); padding:18px 0; border-top:1px solid #D6D1C4; border-bottom:1px solid #D6D1C4;">
           <p style="margin:0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:18px;">Why "Eumnesia"?</p>
-          <p style="margin:0; font-size:15px; line-height:1.6; color:#6F6C63;">Greek <em>eu</em> (good, healthy) + <em>mnēsis</em> (memory) — the clinical opposite of amnesia.</p>
+          <p style="margin:0; font-size:15px; line-height:1.6; color:#59564F;">Greek <em>eu</em> (good, healthy) + <em>mnēsis</em> (memory) — the clinical opposite of amnesia.</p>
         </div>
       </div>
     </div>
   </section>
   <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,5vw,88px);"><svg width="100%" height="9" aria-hidden="true" style="display:block; opacity:.85;"><rect width="100%" height="9" fill="url(#meander)"></rect></svg></div>
   <section id="contact" style="max-width:1440px; margin:0 auto; padding:clamp(64px,10vh,130px) clamp(20px,5vw,88px);">
-    <p style="font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.26em; color:#6F6C63; margin:0 0 26px;">CORRESPONDENCE</p>
+    <p style="font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; letter-spacing:.26em; color:#59564F; margin:0 0 26px;">CORRESPONDENCE</p>
     <a href="mailto:anuj@eumnesia.com" style="display:inline-block; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-size:clamp(28px,5.6vw,72px); line-height:1.08; letter-spacing:-.03em; color:#23241F; border-bottom:1px solid #C4BFB1; padding-bottom:6px; word-break:break-word;" class="hov-green">anuj@eumnesia.com</a>
     <p style="margin:24px 0 0;"><a href="mailto:anuj@eumnesia.com?subject=Eumnesia%20paper%20update%20request&amp;body=Please%20email%20me%20when%20the%20Eumnesia%20Labs%20paper%20is%20published." style="font-size:16px; color:#2F5D46; border-bottom:1px solid #2F5D46; padding-bottom:3px;">Email us to request a paper update ↗</a></p>
     <div id="founder" class="founder-record">
@@ -470,27 +500,28 @@
         </div>
       </div>
     </div>
-    <p style="margin:26px 0 0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#6F6C63;">Eumnesia Labs · founded 2026</p>
+    <p style="margin:26px 0 0; font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:15px; color:#59564F;">Eumnesia Labs · founded 2026</p>
   </section>
 
+  </main>
   <footer style="border-top:1px double #C4BFB1; padding:28px clamp(20px,5vw,88px) 44px; display:grid; gap:22px;">
-    <nav style="display:flex; flex-wrap:wrap; gap:8px clamp(14px,2.2vw,30px); font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.18em;">
-      <a href="#exhibit-01" style="color:#6F6C63; white-space:nowrap;">PROBLEM</a>
-      <a href="#why-now" style="color:#6F6C63; white-space:nowrap;">WHY NOW</a>
-      <a href="#exhibit-02" style="color:#6F6C63; white-space:nowrap;">EVIDENCE</a>
-      <a href="#exhibit-03" style="color:#6F6C63; white-space:nowrap;">APPROACH</a>
-      <a href="#exhibit-04" style="color:#6F6C63; white-space:nowrap;">PROGRESS</a>
-      <a href="#field-notes" style="color:#6F6C63; white-space:nowrap;">FIELD NOTES</a>
-      <a href="#faq" style="color:#6F6C63; white-space:nowrap;">QUESTIONS</a>
-      <a href="#founder" style="color:#6F6C63; white-space:nowrap;">FOUNDER</a>
-      <a href="https://github.com/eumnesia-labs" style="color:#6F6C63; white-space:nowrap;">GITHUB ↗</a>
+    <nav aria-label="Footer" style="display:flex; flex-wrap:wrap; gap:8px clamp(14px,2.2vw,30px); font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px; letter-spacing:.18em;">
+      <a href="#exhibit-01" style="color:#59564F; white-space:nowrap;">PROBLEM</a>
+      <a href="#why-now" style="color:#59564F; white-space:nowrap;">WHY NOW</a>
+      <a href="#exhibit-02" style="color:#59564F; white-space:nowrap;">EVIDENCE</a>
+      <a href="#exhibit-03" style="color:#59564F; white-space:nowrap;">APPROACH</a>
+      <a href="#exhibit-04" style="color:#59564F; white-space:nowrap;">PROGRESS</a>
+      <a href="#field-notes" style="color:#59564F; white-space:nowrap;">FIELD NOTES</a>
+      <a href="#faq" style="color:#59564F; white-space:nowrap;">QUESTIONS</a>
+      <a href="#founder" style="color:#59564F; white-space:nowrap;">FOUNDER</a>
+      <a href="https://github.com/eumnesia-labs" style="color:#59564F; white-space:nowrap;">GITHUB ↗</a>
       <a href="#contact" style="color:#2F5D46; white-space:nowrap;">CONTACT</a>
     </nav>
     <div style="display:flex; flex-wrap:wrap; gap:12px 28px; justify-content:space-between; align-items:baseline;">
-      <span style="font-family:ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.18em; color:#6F6C63;">© 2026 EUMNESIA LABS</span>
-      <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:14px; color:#6F6C63;">Eumnesia Labs · founded 2026 by Anuj Dev Singh · Delhi, India</span>
-      <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#A8A499;">LAST UPDATED · AUGUST 2026</span>
-      <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:14px; color:#A8A499;">The end of AI amnesia.</span>
+      <span style="font-family:ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.18em; color:#59564F;">© 2026 EUMNESIA LABS</span>
+      <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:14px; color:#59564F;">Eumnesia Labs · founded 2026 by Anuj Dev Singh · Delhi, India</span>
+      <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.18em; color:#59564F;">LAST UPDATED · SEPTEMBER 2026</span>
+      <span style="font-family:'Iowan Old Style',Palatino,Georgia,serif; font-style:italic; font-size:14px; color:#59564F;">The end of AI amnesia.</span>
     </div>
   </footer>
 </div>
